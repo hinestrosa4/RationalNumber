@@ -1,0 +1,45 @@
+package Tema9_Pruebas;
+
+import java.util.Random;
+
+public class ArrayFracciones {
+
+	public static RationalNumber sumatorio(RationalNumber[] fracciones) {
+		RationalNumber sumatorio = new RationalNumber(fracciones[0].getn(),fracciones[0].getd());
+		
+		for (int i = 0; i < fracciones.length-1;i++) {
+			
+			sumatorio = sumatorio.suma(fracciones[i+1]);
+			
+		}
+		return sumatorio;
+	}
+
+	public static void fracciones(Random numero, RationalNumber[] fracciones) {
+		for (int i = 0; i < fracciones.length; i++) {
+
+			int n = 1 + numero.nextInt(9);
+			int d = 1 + numero.nextInt(9);
+
+			fracciones[i] = new RationalNumber(n, d);
+
+			System.out.println(fracciones[i]);
+
+		}
+	}
+	
+	public static void main(String[] args) {
+
+		Random numero = new Random();
+
+		RationalNumber fracciones[] = new RationalNumber[10];
+
+		fracciones(numero, fracciones);
+		
+		RationalNumber sumatorio = sumatorio(fracciones);
+		
+		System.out.println(sumatorio);
+
+	}
+
+}
