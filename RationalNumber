@@ -1,0 +1,93 @@
+package Tema9_Pruebas;
+
+public class RationalNumber {
+
+	private int n;
+	private int d;
+
+	public RationalNumber() {
+
+		this.n = 1;
+		this.d = 1;
+		
+	}
+
+	public RationalNumber(int n, int d) {
+
+		this.n = n;
+		this.d = d;
+		simplify();
+
+	}
+
+	public int getn() {
+		return n;
+	}
+
+	public void setn(int n) {
+		this.n = n;
+	}
+
+	public int getd() {
+		return d;
+	}
+
+	public void setd(int d) {
+		this.d = d;
+	}
+
+	@Override
+	public String toString() {
+		return n + "/" + d;
+	}
+
+	public double toDouble() {
+
+		return (double) this.n / (double) this.d;
+
+	}
+
+	public RationalNumber suma(RationalNumber f) {
+
+		int d = this.d * f.d;
+		int n = ((d / this.d) * this.n) + ((d / f.d) * f.n);
+
+		return new RationalNumber(n, d);
+
+	}
+
+	public RationalNumber resta(RationalNumber f) {
+
+		int d = this.d * f.d;
+		int n = ((d / this.d) * this.n) - ((d / f.d) * f.n);
+
+		return new RationalNumber(n, d);
+
+	}
+
+	public RationalNumber multiplicacion(RationalNumber f) {
+
+		int n = this.n * f.n;
+		int d = this.d * f.d;
+
+		return new RationalNumber(n, d);
+	}
+
+	public RationalNumber division(RationalNumber f) {
+
+		int n = this.n * f.d;
+		int d = this.d * f.n;
+
+		return new RationalNumber(n, d);
+
+	}
+
+	private void simplify() {
+		int gcd = this.n < this.d ? this.n : this.d;
+		while (!(this.n % gcd == 0 && this.d % gcd == 0))
+			--gcd;
+		this.d /= gcd;
+		this.n /= gcd;
+	}
+
+}
